@@ -1,0 +1,21 @@
+<div class="view">
+  <input
+    class="toggle"
+    type="checkbox"
+    [checked]="todo.completed"
+    (change)="toggleTodo()"
+  />
+  <label (dblclick)="setTodoInEditMode()">{{ todo.description }}</label>
+  <button class="destroy" (click)="removeTodo()"></button>
+</div>
+@if (editing) {
+<input
+  class="edit"
+  #textInput
+  [value]="editingText()"
+  (keyup)="changeText($event)"
+  (keyup.enter)="changeTodo()"
+  (blur)="setEditingId.emit(null)"
+/>
+<span class="spinner" *ngIf="loading()">...</span>
+}

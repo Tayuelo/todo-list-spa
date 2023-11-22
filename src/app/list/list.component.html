@@ -1,0 +1,16 @@
+<section class="main">
+  <ul class="todo-list">
+    @for (todo of visibleTodos(); track todo._id) {
+    <li
+      [@flyInOut]="'in'"
+      [ngClass]="{ editing: editingId === todo._id, completed: todo.completed }"
+    >
+      <todo-item
+        [todo]="todo"
+        [editing]="editingId === todo._id"
+        (setEditingId)="setEditingId($event)"
+      ></todo-item>
+    </li>
+    }
+  </ul>
+</section>
